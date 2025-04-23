@@ -1,8 +1,12 @@
+import 'package:fabriq_pro/core/dependencies.dart';
 import 'package:fabriq_pro/core/routing/router.dart';
+import 'package:fabriq_pro/core/utils/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
-  runApp(FabriqProApp());
+  runApp(ScreenUtilInit(designSize: Size(1920, 1080), child: FabriqProApp()));
 }
 
 class FabriqProApp extends StatelessWidget {
@@ -10,6 +14,13 @@ class FabriqProApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(debugShowCheckedModeBanner: false, routerConfig: router);
+    return MultiBlocProvider(
+      providers: dependencies,
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        theme: AppThemes.lightTheme,
+        routerConfig: router,
+      ),
+    );
   }
 }
