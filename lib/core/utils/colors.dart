@@ -25,4 +25,5 @@ class AppColors {
 
   static const facebookColor = Color(0xFF1877F2);
   static const successGreen = Color(0xFF0C9409);
+  static const borderContainer = Color(0xFFD5D5D7);
 }
