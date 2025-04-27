@@ -46,7 +46,6 @@ class ClothesView extends StatelessWidget {
                 ],
               ),
             ),
-
           ],
         ),
       ),
