@@ -18,7 +18,7 @@ import 'package:fabriq_pro/features/settings/pages/settings_view.dart';
 import 'package:fabriq_pro/features/statistics/pages/statistics_view.dart';
 import 'package:fabriq_pro/features/storage/pages/accessories_view.dart';
 import 'package:fabriq_pro/features/storage/pages/clothes_view.dart';
-import 'package:fabriq_pro/features/storage/pages/miscellaneous_view.dart';
+import 'package:fabriq_pro/features/storage/pages/miscellaneous/miscellaneous_view.dart';
 import 'package:fabriq_pro/features/storage/pages/products_view.dart';
 import 'package:fabriq_pro/features/storage/pages/spare_parts_view.dart';
 import 'package:flutter/material.dart';
