@@ -23,11 +23,18 @@ class FabriqDeleteButton extends StatefulWidget {
 class _FabriqDeleteButtonState extends State<FabriqDeleteButton> {
   final GlobalKey _buttonKey = GlobalKey();
   OverlayEntry? _overlayEntry;
+  late double top;
 
   void _showCustomDialog() {
     RenderBox renderBox = _buttonKey.currentContext!.findRenderObject() as RenderBox;
     Offset buttonPosition = renderBox.localToGlobal(Offset.zero);
     Size buttonSize = renderBox.size;
+    final size = MediaQuery.sizeOf(_buttonKey.currentContext!);
+    if (size.height - buttonPosition.dy > 180) {
+      top = buttonPosition.dy - buttonSize.height;
+    } else {
+      top = buttonPosition.dy - (2 * buttonSize.height + 152);
+    }
 
     _overlayEntry = OverlayEntry(
       builder: (context) {
@@ -38,12 +45,13 @@ class _FabriqDeleteButtonState extends State<FabriqDeleteButton> {
                 onTap: () {
                   _overlayEntry?.remove();
                   _overlayEntry = null;
+                  _overlayEntry?.dispose();
                 },
                 child: Container(color: Colors.transparent),
               ),
             ),
             Positioned(
-              top: buttonPosition.dy - buttonSize.height,
+              top: top,
               left: buttonPosition.dx - 550,
               child: Material(
                 elevation: 4,

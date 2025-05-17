@@ -86,11 +86,10 @@ class _MaterialUpdateDialogState extends State<MaterialUpdateDialog> {
                     icon: "assets/icons/add_profile.svg",
                     width: 250,
                     height: 40,
-                    callback: () {
-                      context.read<MaterialsBloc>().add(
-                        MaterialsCreateNew(title: titleController.text),
-                      );
-                    },
+                    callback:
+                        () => context.read<MaterialsBloc>().add(
+                          MaterialsUpdate(id: widget.materialType.id, title: titleController.text),
+                        ),
                   ),
                 ],
               ),
