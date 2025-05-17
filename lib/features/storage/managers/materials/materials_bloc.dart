@@ -13,6 +13,7 @@ class MaterialsBloc extends Bloc<MaterialsEvent, MaterialsState> {
     on<MaterialsLoad>(_onLoad);
     on<MaterialsCreateNew>(_onCreateNew);
     on<MaterialsDelete>(_onDelete);
+    on<MaterialsUpdate>(_onUpdate);
     add(MaterialsLoad());
   }
 
@@ -34,14 +35,15 @@ class MaterialsBloc extends Bloc<MaterialsEvent, MaterialsState> {
     }
   }
 
-  // Future _onUpdate(MaterialsUpdate event, Emitter<MaterialsState> emit) async {
-  //   emit(state.copyWith(status: MaterialsStatus.loading));
-  //   try {
-  //     await _matRepo.
-  //   } catch (ex) {
-  //     emit(state.copyWith(status: MaterialsStatus.error, errorMessage: ex.toString()));
-  //   }
-  // }
+  Future _onUpdate(MaterialsUpdate event, Emitter<MaterialsState> emit) async {
+    emit(state.copyWith(status: MaterialsStatus.loading));
+    try {
+      await _matRepo.updateMaterial(data: MaterialUpdateModel(id: event.id, title: event.title));
+      emit(state.copyWith(status: MaterialsStatus.success));
+    } catch (ex) {
+      emit(state.copyWith(status: MaterialsStatus.error, errorMessage: ex.toString()));
+    }
+  }
 
   Future _onDelete(MaterialsDelete event, Emitter<MaterialsState> emit) async {
     emit(state.copyWith(status: MaterialsStatus.loading));

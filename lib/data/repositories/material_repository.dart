@@ -21,8 +21,8 @@ class MaterialRepository {
     return true;
   }
 
-  Future updateMaterial({required MaterialCreateModel data}) async{
-    await client.genericPatchRequest('/materials/update-material-type',data: data);
+  Future updateMaterial({required MaterialUpdateModel data}) async {
+    await client.genericPatchRequest('/materials/update-material-type/${data.id}', data: data);
   }
 
   Future deleteMaterialType(int materialId) async {
