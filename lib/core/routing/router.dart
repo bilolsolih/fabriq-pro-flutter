@@ -16,10 +16,11 @@ import 'package:fabriq_pro/features/notifications/pages/notifications_view.dart'
 import 'package:fabriq_pro/features/orders/pages/orders_view.dart';
 import 'package:fabriq_pro/features/settings/pages/settings_view.dart';
 import 'package:fabriq_pro/features/statistics/pages/statistics_view.dart';
+import 'package:fabriq_pro/features/storage/managers/products_manager/products_bloc.dart';
 import 'package:fabriq_pro/features/storage/pages/accessories_view.dart';
 import 'package:fabriq_pro/features/storage/pages/clothes_view.dart';
 import 'package:fabriq_pro/features/storage/pages/miscellaneous_view.dart';
-import 'package:fabriq_pro/features/storage/pages/products_view.dart';
+import 'package:fabriq_pro/features/storage/pages/products/products_view.dart';
 import 'package:fabriq_pro/features/storage/pages/spare_parts_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,7 +50,14 @@ final GoRouter router = GoRouter(
           ],
         ),
         GoRoute(path: Routes.orders, builder: (context, state) => OrdersView()),
-        GoRoute(path: Routes.products, builder: (context, state) => ProductsView()),
+        GoRoute(
+          path: Routes.products,
+          builder:
+              (context, state) => BlocProvider(
+                create: (BuildContext context) => ProductsBloc(productRepo: context.read()),
+                child: ProductsView(),
+              ),
+        ),
         GoRoute(path: Routes.clothes, builder: (context, state) => ClothesView()),
         GoRoute(path: Routes.accessories, builder: (context, state) => AccessoriesView()),
         GoRoute(path: Routes.spareParts, builder: (context, state) => SparePartsView()),

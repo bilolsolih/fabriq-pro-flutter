@@ -39,7 +39,7 @@ class FabriqBodyHeader extends StatelessWidget {
           FabriqTextButtonWithIcon(
             title: buttonTitle,
             icon: icon,
-            width: 180,
+            width: 192,
             height: 40,
             callback: buttonCallback,
           ),
