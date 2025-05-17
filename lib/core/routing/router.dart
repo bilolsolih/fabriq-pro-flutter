@@ -1,12 +1,15 @@
 import 'package:fabriq_pro/core/routing/routes.dart';
-import 'package:fabriq_pro/features/employees/managers/employees_bloc.dart';
-import 'package:fabriq_pro/features/employees/pages/employee_update_view.dart';
-import 'package:fabriq_pro/features/employees/pages/employees_view.dart';
+import 'package:fabriq_pro/data/models/material/material_models.dart';
+import 'package:fabriq_pro/features/authentication/managers/login_bloc.dart';
 import 'package:fabriq_pro/features/authentication/pages/login_view.dart';
 import 'package:fabriq_pro/features/clients/managers/clients_bloc.dart';
 import 'package:fabriq_pro/features/clients/pages/client_update_view.dart';
 import 'package:fabriq_pro/features/clients/pages/clients_view.dart';
 import 'package:fabriq_pro/features/common/pages/base_view.dart';
+import 'package:fabriq_pro/features/common/pages/dialog_route.dart';
+import 'package:fabriq_pro/features/employees/managers/employees_bloc.dart';
+import 'package:fabriq_pro/features/employees/pages/employee_update_view.dart';
+import 'package:fabriq_pro/features/employees/pages/employees_view.dart';
 import 'package:fabriq_pro/features/finance/pages/finance_view.dart';
 import 'package:fabriq_pro/features/manufacture/pages/cutting_view.dart';
 import 'package:fabriq_pro/features/manufacture/pages/packaging_view.dart';
@@ -16,15 +19,19 @@ import 'package:fabriq_pro/features/notifications/pages/notifications_view.dart'
 import 'package:fabriq_pro/features/orders/pages/orders_view.dart';
 import 'package:fabriq_pro/features/settings/pages/settings_view.dart';
 import 'package:fabriq_pro/features/statistics/pages/statistics_view.dart';
-import 'package:fabriq_pro/features/storage/managers/products_manager/products_bloc.dart';
+import 'package:fabriq_pro/features/storage/managers/products/products_bloc.dart';
 import 'package:fabriq_pro/features/storage/pages/accessories_view.dart';
-import 'package:fabriq_pro/features/storage/pages/clothes_view.dart';
+import 'package:fabriq_pro/features/storage/pages/dialogs/material_create_dialog.dart';
+import 'package:fabriq_pro/features/storage/pages/dialogs/material_update_dialog.dart';
 import 'package:fabriq_pro/features/storage/pages/miscellaneous_view.dart';
-import 'package:fabriq_pro/features/storage/pages/products/products_view.dart';
 import 'package:fabriq_pro/features/storage/pages/spare_parts_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../features/storage/managers/materials/materials_bloc.dart';
+import '../../features/storage/pages/material_types_view.dart';
+import '../../features/storage/pages/products/products_view.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
@@ -54,11 +61,41 @@ final GoRouter router = GoRouter(
           path: Routes.products,
           builder:
               (context, state) => BlocProvider(
-                create: (BuildContext context) => ProductsBloc(productRepo: context.read()),
+                create: (context) => ProductsBloc(productRepo: context.read()),
                 child: ProductsView(),
               ),
         ),
-        GoRoute(path: Routes.clothes, builder: (context, state) => ClothesView()),
+        ShellRoute(
+          builder:
+              (context, state, child) => BlocProvider(
+                create: (context) => MaterialsBloc(matRepo: context.read()),
+                child: child,
+              ),
+          routes: [
+            GoRoute(
+              path: Routes.materials,
+              builder: (context, state) => ClothesView(),
+              routes: [
+                GoRoute(
+                  path: Routes.materialTypeCreate,
+                  pageBuilder: (context, state) {
+                    return DialogPage(builder: (context) => MaterialCreateDialog());
+                  },
+                ),
+                GoRoute(
+                  path: Routes.materialTypeUpdate,
+                  pageBuilder: (context, state) {
+                    return DialogPage(
+                      builder:
+                          (context) =>
+                              MaterialUpdateDialog(materialType: state.extra as MaterialListModel),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ],
+        ),
         GoRoute(path: Routes.accessories, builder: (context, state) => AccessoriesView()),
         GoRoute(path: Routes.spareParts, builder: (context, state) => SparePartsView()),
         GoRoute(path: Routes.miscellaneous, builder: (context, state) => MiscellaneousView()),
@@ -80,6 +117,13 @@ final GoRouter router = GoRouter(
         GoRoute(path: Routes.settings, builder: (context, state) => SettingsView()),
       ],
     ),
-    GoRoute(path: Routes.login, builder: (context, state) => LoginView()),
+    GoRoute(
+      path: Routes.login,
+      builder:
+          (context, state) => BlocProvider(
+            create: (context) => LoginBloc(authRepo: context.read()),
+            child: LoginView(),
+          ),
+    ),
   ],
 );

@@ -1,12 +1,12 @@
-import 'package:fabriq_pro/features/storage/managers/products_manager/products_bloc.dart';
-import 'package:fabriq_pro/features/storage/managers/products_manager/products_state.dart';
+import 'package:fabriq_pro/features/storage/managers/products/products_bloc.dart';
+import 'package:fabriq_pro/features/storage/managers/products/products_state.dart';
 import 'package:fabriq_pro/features/storage/pages/products/product_add_dialog.dart';
-import 'package:fabriq_pro/features/storage/widgets/products_widgets/products_table_data_rows.dart';
-import 'package:fabriq_pro/features/storage/widgets/products_widgets/products_table_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../common/widgets/fabriq_body_header.dart';
+import '../../widgets/products/products_table_data_rows.dart';
+import '../../widgets/products/products_table_header.dart';
 
 class ProductsView extends StatelessWidget {
   const ProductsView({super.key});
@@ -33,13 +33,19 @@ class ProductsView extends StatelessWidget {
               buttonCallback: () async {
                 await showDialog(
                   context: context,
-                  builder: (context) => ProductAddDialog(),
+                  builder:
+                      (context) => BlocProvider(
+                        create: (BuildContext context) => ProductsBloc(productRepo: context.read()),
+                        child: ProductAddDialog(),
+                      ),
                 );
               },
             ),
             ProductsTableHeader(),
 
-            BlocBuilder<ProductsBloc, ProductsState>(builder:(context, state) =>  ProductsTableDataRows(products: state.products)),
+            BlocBuilder<ProductsBloc, ProductsState>(
+              builder: (context, state) => ProductsTableDataRows(products: state.products),
+            ),
           ],
         ),
       ),

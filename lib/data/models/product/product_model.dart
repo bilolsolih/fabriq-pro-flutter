@@ -8,9 +8,10 @@ part 'product_model.g.dart';
 abstract class Product with _$Product implements IJsonSerializable {
   const factory Product({
     required int id,
-    required String name,
-    required String employee,
-    required String role,
+    required String title,
+    required String model,
+    required String colorTitle,
+    required String colorHex,
     required int quantity,
   }) = _Product;
 

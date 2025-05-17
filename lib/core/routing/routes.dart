@@ -6,6 +6,7 @@ class Routes {
   static const clients = '/clients';
 
   static const employeeUpdate = '/edit/:employeeId';
+
   static String getEmployeeUpdate(int employeeId) => '/employees/edit/$employeeId';
 
   static const clientUpdate = '/edit/:clientId';
@@ -16,7 +17,15 @@ class Routes {
 
   static const storageBase = '/storage';
   static const products = '$storageBase/products';
-  static const clothes = '$storageBase/clothes';
+
+  static const materials = '$storageBase/materials';
+  static const materialTypeCreate = '/create';
+  static const materialTypeUpdate = '/update/:id';
+
+  static String getMaterialTypeCreate() => materials + materialTypeCreate;
+
+  static String getMaterialTypeUpdate(int id) => '$materials/update/$id';
+
   static const accessories = '$storageBase/accessories';
   static const spareParts = '$storageBase/spare-parts';
   static const miscellaneous = '$storageBase/miscellaneous';

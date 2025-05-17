@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProductsState {
 
- List<Product> get products; ProductsStatus get status;
+ List<Product> get products; ProductsStatus get status; List<ProductTypeModel> get productTypes; List<ProductModelInfo> get productModels;
 /// Create a copy of ProductsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $ProductsStateCopyWith<ProductsState> get copyWith => _$ProductsStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProductsState&&const DeepCollectionEquality().equals(other.products, products)&&(identical(other.status, status) || other.status == status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProductsState&&const DeepCollectionEquality().equals(other.products, products)&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.productTypes, productTypes)&&const DeepCollectionEquality().equals(other.productModels, productModels));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(products),status);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(products),status,const DeepCollectionEquality().hash(productTypes),const DeepCollectionEquality().hash(productModels));
 
 @override
 String toString() {
-  return 'ProductsState(products: $products, status: $status)';
+  return 'ProductsState(products: $products, status: $status, productTypes: $productTypes, productModels: $productModels)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $ProductsStateCopyWith<$Res>  {
   factory $ProductsStateCopyWith(ProductsState value, $Res Function(ProductsState) _then) = _$ProductsStateCopyWithImpl;
 @useResult
 $Res call({
- List<Product> products, ProductsStatus status
+ List<Product> products, ProductsStatus status, List<ProductTypeModel> productTypes, List<ProductModelInfo> productModels
 });
 
 
@@ -63,11 +63,13 @@ class _$ProductsStateCopyWithImpl<$Res>
 
 /// Create a copy of ProductsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? products = null,Object? status = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? products = null,Object? status = null,Object? productTypes = null,Object? productModels = null,}) {
   return _then(_self.copyWith(
 products: null == products ? _self.products : products // ignore: cast_nullable_to_non_nullable
 as List<Product>,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as ProductsStatus,
+as ProductsStatus,productTypes: null == productTypes ? _self.productTypes : productTypes // ignore: cast_nullable_to_non_nullable
+as List<ProductTypeModel>,productModels: null == productModels ? _self.productModels : productModels // ignore: cast_nullable_to_non_nullable
+as List<ProductModelInfo>,
   ));
 }
 
@@ -78,7 +80,7 @@ as ProductsStatus,
 
 
 class _ProductsState implements ProductsState {
-  const _ProductsState({required final  List<Product> products, required this.status}): _products = products;
+  const _ProductsState({required final  List<Product> products, required this.status, required final  List<ProductTypeModel> productTypes, required final  List<ProductModelInfo> productModels}): _products = products,_productTypes = productTypes,_productModels = productModels;
   
 
  final  List<Product> _products;
@@ -89,6 +91,20 @@ class _ProductsState implements ProductsState {
 }
 
 @override final  ProductsStatus status;
+ final  List<ProductTypeModel> _productTypes;
+@override List<ProductTypeModel> get productTypes {
+  if (_productTypes is EqualUnmodifiableListView) return _productTypes;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_productTypes);
+}
+
+ final  List<ProductModelInfo> _productModels;
+@override List<ProductModelInfo> get productModels {
+  if (_productModels is EqualUnmodifiableListView) return _productModels;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_productModels);
+}
+
 
 /// Create a copy of ProductsState
 /// with the given fields replaced by the non-null parameter values.
@@ -100,16 +116,16 @@ _$ProductsStateCopyWith<_ProductsState> get copyWith => __$ProductsStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProductsState&&const DeepCollectionEquality().equals(other._products, _products)&&(identical(other.status, status) || other.status == status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProductsState&&const DeepCollectionEquality().equals(other._products, _products)&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other._productTypes, _productTypes)&&const DeepCollectionEquality().equals(other._productModels, _productModels));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_products),status);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_products),status,const DeepCollectionEquality().hash(_productTypes),const DeepCollectionEquality().hash(_productModels));
 
 @override
 String toString() {
-  return 'ProductsState(products: $products, status: $status)';
+  return 'ProductsState(products: $products, status: $status, productTypes: $productTypes, productModels: $productModels)';
 }
 
 
@@ -120,7 +136,7 @@ abstract mixin class _$ProductsStateCopyWith<$Res> implements $ProductsStateCopy
   factory _$ProductsStateCopyWith(_ProductsState value, $Res Function(_ProductsState) _then) = __$ProductsStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<Product> products, ProductsStatus status
+ List<Product> products, ProductsStatus status, List<ProductTypeModel> productTypes, List<ProductModelInfo> productModels
 });
 
 
@@ -137,11 +153,13 @@ class __$ProductsStateCopyWithImpl<$Res>
 
 /// Create a copy of ProductsState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? products = null,Object? status = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? products = null,Object? status = null,Object? productTypes = null,Object? productModels = null,}) {
   return _then(_ProductsState(
 products: null == products ? _self._products : products // ignore: cast_nullable_to_non_nullable
 as List<Product>,status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as ProductsStatus,
+as ProductsStatus,productTypes: null == productTypes ? _self._productTypes : productTypes // ignore: cast_nullable_to_non_nullable
+as List<ProductTypeModel>,productModels: null == productModels ? _self._productModels : productModels // ignore: cast_nullable_to_non_nullable
+as List<ProductModelInfo>,
   ));
 }
 

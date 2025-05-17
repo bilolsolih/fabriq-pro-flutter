@@ -22,7 +22,7 @@ class _ProductsTableDataRowsState extends State<ProductsTableDataRows> {
     return Expanded(
       child: ListView.builder(
         itemCount: widget.products.length,
-        itemBuilder:(context, index) {
+        itemBuilder: (context, index) {
           final product = widget.products[index];
           return Container(
             height: 60,
@@ -37,12 +37,29 @@ class _ProductsTableDataRowsState extends State<ProductsTableDataRows> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                FabriqTableData(data: "#${product.id + 1}"),
-                FabriqTableData(data: product.name),
-                FabriqTableData(data: product.employee, flex: 2),
-                FabriqTableData(data: product.role, flex: 2),
-                FabriqTableData(data: "${product.quantity} dona", flex: 2),
-                FabriqTableData(data: product.quantity.toString(), flex: 2),
+                FabriqTableData(data: "#${product.id}"),
+                FabriqTableData(data: product.title),
+                FabriqTableData(data: product.model),
+                Flexible(
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Color(int.parse(product.colorHex)),
+                          borderRadius: BorderRadius.circular(20),
+                          border:
+                              product.colorHex == "0xFFFFFFFF"
+                                  ? Border.all(color: Colors.black, width: 1)
+                                  : null,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                FabriqTableData(data: "${product.quantity} dona"),
                 Flexible(
                   flex: 1,
                   child: Row(
@@ -51,7 +68,7 @@ class _ProductsTableDataRowsState extends State<ProductsTableDataRows> {
                       FabriqIconButtonOutlined(
                         icon: "assets/icons/edit.svg",
                         color: AppColors.darkBlue,
-                        callback: () async{
+                        callback: () async {
                           await showDialog(
                             context: context,
                             builder: (context) => ProductUpdateView(),

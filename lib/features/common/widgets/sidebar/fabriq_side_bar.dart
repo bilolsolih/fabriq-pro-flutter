@@ -65,7 +65,7 @@ class FabriqSideBar extends StatelessWidget {
                       SideBarSubItem(
                         title: "Materiallar",
                         icon: "assets/icons/packaging.svg",
-                        callback: () => context.go(Routes.clothes),
+                        callback: () => context.go(Routes.materials),
                       ),
                       SideBarSubItem(
                         title: "Aksessuarlar",

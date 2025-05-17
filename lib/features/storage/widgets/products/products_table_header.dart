@@ -17,10 +17,9 @@ class ProductsTableHeader extends StatelessWidget {
         children: [
           FabriqTableHeaderTitle(title: 'No', flex: 1),
           FabriqTableHeaderTitle(title: 'Nomi', flex: 1),
-          FabriqTableHeaderTitle(title: 'Model', flex: 2),
-          FabriqTableHeaderTitle(title: 'Turi', flex: 2),
-          FabriqTableHeaderTitle(title: 'Rangi', flex: 2),
-          FabriqTableHeaderTitle(title: 'Miqdori', flex: 2),
+          FabriqTableHeaderTitle(title: 'Model', flex: 1),
+          FabriqTableHeaderTitle(title: 'Rangi', flex: 1),
+          FabriqTableHeaderTitle(title: 'Miqdori', flex: 1),
           FabriqTableHeaderTitle(title: 'Taxrirlash', flex: 1),
         ],
       ),
