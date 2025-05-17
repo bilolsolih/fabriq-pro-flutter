@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../../../core/utils/colors.dart';
 import '../../common/widgets/fabriq_table_header_title.dart';
 
-class ClothesView extends StatelessWidget {
-  const ClothesView({super.key});
+class ClothesDetailView extends StatelessWidget {
+  const ClothesDetailView({super.key});
 
   @override
   Widget build(BuildContext context) {

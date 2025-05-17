@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class FabriqTextButtonWithIcon extends StatelessWidget {
-  FabriqTextButtonWithIcon({
+  const FabriqTextButtonWithIcon({
     super.key,
     required this.title,
     required this.icon,

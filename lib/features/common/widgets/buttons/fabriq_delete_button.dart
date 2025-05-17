@@ -25,7 +25,6 @@ class _FabriqDeleteButtonState extends State<FabriqDeleteButton> {
   OverlayEntry? _overlayEntry;
 
   void _showCustomDialog() {
-    // Get button render box
     RenderBox renderBox = _buttonKey.currentContext!.findRenderObject() as RenderBox;
     Offset buttonPosition = renderBox.localToGlobal(Offset.zero);
     Size buttonSize = renderBox.size;
@@ -34,7 +33,6 @@ class _FabriqDeleteButtonState extends State<FabriqDeleteButton> {
       builder: (context) {
         return Stack(
           children: [
-            // Tappable background to dismiss
             Positioned.fill(
               child: GestureDetector(
                 onTap: () {
@@ -44,7 +42,6 @@ class _FabriqDeleteButtonState extends State<FabriqDeleteButton> {
                 child: Container(color: Colors.transparent),
               ),
             ),
-            // Positioned dialog
             Positioned(
               top: buttonPosition.dy - buttonSize.height,
               left: buttonPosition.dx - 550,
@@ -90,7 +87,11 @@ class _FabriqDeleteButtonState extends State<FabriqDeleteButton> {
                             height: 40,
                             foregroundColor: Colors.white,
                             backgroundColor: AppColors.darkBlue,
-                            callback: widget.callback,
+                            callback: () {
+                              widget.callback();
+                              _overlayEntry?.remove();
+                              _overlayEntry = null;
+                            },
                           ),
                         ],
                       ),
