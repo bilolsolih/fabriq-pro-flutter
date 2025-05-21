@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../core/routing/routes.dart';
+import '../../common/widgets/fabriq_body_header_with_history.dart';
+import '../widgets/accessory_types/accessory_types_body.dart';
+import '../widgets/accessory_types/accessory_types_columns.dart';
+
+class AccessoryTypesView extends StatelessWidget {
+  const AccessoryTypesView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(20.sp),
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12.sp),
+          border: Border.all(color: Color(0xFFD5D5D7), width: 1),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            FabriqBodyHeaderWithHistory(
+              title: "Barcha Aksessuarlar",
+              icon: "assets/icons/add_profile.svg",
+              buttonTitle: "Qo'shish",
+              filterCallback: () {},
+              buttonCallback: () async {
+                context.go(Routes.getAccessoryTypeCreate());
+              },
+            ),
+            AccessoryTypesColumns(),
+            AccessoryTypesBody(),
+          ],
+        ),
+      ),
+    );
+  }
+}

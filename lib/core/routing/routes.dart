@@ -1,4 +1,8 @@
 class Routes {
+  static const genericCreate = '/create';
+  static const genericUpdate = '/update/:id';
+  static const genericDetail = '/detail/:id';
+
   static const login = '/login';
   static const statistics = '/statistics';
   static const monitoring = '/monitoring';
@@ -19,14 +23,21 @@ class Routes {
   static const products = '$storageBase/products';
 
   static const materials = '$storageBase/materials';
-  static const materialTypeCreate = '/create';
-  static const materialTypeUpdate = '/update/:id';
 
-  static String getMaterialTypeCreate() => materials + materialTypeCreate;
+  static String getMaterialTypeCreate() => '$materials$genericCreate';
 
   static String getMaterialTypeUpdate(int id) => '$materials/update/$id';
 
+  static String getMaterialTypeDetail(int id) => '$materials/detail/$id';
+
   static const accessories = '$storageBase/accessories';
+
+  static String getAccessoryTypeCreate() => '$accessories$genericCreate';
+
+  static String getAccessoryTypeUpdate(int id) => '$accessories/update/$id';
+
+  static String getAccessoryTypeDetail(int id) => '$accessories/detail/$id';
+
   static const spareParts = '$storageBase/spare-parts';
   static const miscellaneous = '$storageBase/miscellaneous';
 

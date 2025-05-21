@@ -1,6 +1,7 @@
 import 'package:fabriq_pro/core/utils/colors.dart';
 import 'package:fabriq_pro/features/common/widgets/buttons/fabriq_text_button_with_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FabriqBodyHeaderWithHistory extends StatelessWidget {
   const FabriqBodyHeaderWithHistory({
@@ -18,39 +19,42 @@ class FabriqBodyHeaderWithHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 22, vertical: 20),
+      padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 20.h),
       child: Row(
         children: [
           Text(
             title,
-            style: TextStyle(color: Colors.black, fontSize: 24, fontWeight: FontWeight.w500),
+            style: TextStyle(color: Colors.black, fontSize: 24.spMin, fontWeight: FontWeight.w500),
           ),
           Spacer(),
           FabriqTextButtonWithIcon(
             title: "Filter",
             icon: "assets/icons/filter.svg",
-            width: 106,
-            height: 40,
+            width: 106.w,
+            height: 40.h,
+            fontSize: 16.spMin,
             foregroundColor: Colors.black,
             backgroundColor: AppColors.backgroundColor,
             callback: filterCallback,
           ),
-          SizedBox(width: 20),
+          SizedBox(width: 20.w),
           FabriqTextButtonWithIcon(
             title: "Maxsulot tarixi",
             icon: "assets/icons/history.svg",
-            width: 180,
-            height: 40,
+            width: 180.w,
+            height: 40.h,
+            fontSize: 16.spMin,
             foregroundColor: Colors.black,
             backgroundColor: AppColors.backgroundColor,
             callback: filterCallback,
           ),
-          SizedBox(width: 20),
+          SizedBox(width: 20.w),
           FabriqTextButtonWithIcon(
             title: buttonTitle,
             icon: icon,
-            width: 180,
-            height: 40,
+            width: 180.spMin,
+            height: 40.spMin,
+            fontSize: 16.spMin,
             callback: buttonCallback,
           ),
         ],

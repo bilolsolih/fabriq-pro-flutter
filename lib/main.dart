@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
-  runApp(ScreenUtilInit(designSize: Size(1920, 1080), child: FabriqProApp()));
+  runApp(ScreenUtilInit(designSize: Size(1440, 1080), child: FabriqProApp()));
 }
 
 class FabriqProApp extends StatelessWidget {

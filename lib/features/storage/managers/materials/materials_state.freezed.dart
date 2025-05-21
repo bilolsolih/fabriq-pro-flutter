@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MaterialsState {
 
- MaterialsStatus get status; List<MaterialListModel> get materials; String? get errorMessage;
+ Status get status; List<MaterialModel> get materials; MaterialTypeItemModel? get selectedType; String? get errorMessage;
 /// Create a copy of MaterialsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $MaterialsStateCopyWith<MaterialsState> get copyWith => _$MaterialsStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is MaterialsState&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.materials, materials)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MaterialsState&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other.materials, materials)&&(identical(other.selectedType, selectedType) || other.selectedType == selectedType)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,const DeepCollectionEquality().hash(materials),errorMessage);
+int get hashCode => Object.hash(runtimeType,status,const DeepCollectionEquality().hash(materials),selectedType,errorMessage);
 
 @override
 String toString() {
-  return 'MaterialsState(status: $status, materials: $materials, errorMessage: $errorMessage)';
+  return 'MaterialsState(status: $status, materials: $materials, selectedType: $selectedType, errorMessage: $errorMessage)';
 }
 
 
@@ -46,11 +46,11 @@ abstract mixin class $MaterialsStateCopyWith<$Res>  {
   factory $MaterialsStateCopyWith(MaterialsState value, $Res Function(MaterialsState) _then) = _$MaterialsStateCopyWithImpl;
 @useResult
 $Res call({
- MaterialsStatus status, List<MaterialListModel> materials, String? errorMessage
+ Status status, List<MaterialModel> materials, MaterialTypeItemModel? selectedType, String? errorMessage
 });
 
 
-
+$MaterialTypeItemModelCopyWith<$Res>? get selectedType;
 
 }
 /// @nodoc
@@ -63,15 +63,28 @@ class _$MaterialsStateCopyWithImpl<$Res>
 
 /// Create a copy of MaterialsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? materials = null,Object? errorMessage = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? materials = null,Object? selectedType = freezed,Object? errorMessage = freezed,}) {
   return _then(_self.copyWith(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as MaterialsStatus,materials: null == materials ? _self.materials : materials // ignore: cast_nullable_to_non_nullable
-as List<MaterialListModel>,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as Status,materials: null == materials ? _self.materials : materials // ignore: cast_nullable_to_non_nullable
+as List<MaterialModel>,selectedType: freezed == selectedType ? _self.selectedType : selectedType // ignore: cast_nullable_to_non_nullable
+as MaterialTypeItemModel?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
+/// Create a copy of MaterialsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MaterialTypeItemModelCopyWith<$Res>? get selectedType {
+    if (_self.selectedType == null) {
+    return null;
+  }
 
+  return $MaterialTypeItemModelCopyWith<$Res>(_self.selectedType!, (value) {
+    return _then(_self.copyWith(selectedType: value));
+  });
+}
 }
 
 
@@ -79,17 +92,18 @@ as String?,
 
 
 class _MaterialsState implements MaterialsState {
-  const _MaterialsState({required this.status, required final  List<MaterialListModel> materials, this.errorMessage}): _materials = materials;
+  const _MaterialsState({required this.status, required final  List<MaterialModel> materials, this.selectedType, this.errorMessage}): _materials = materials;
   
 
-@override final  MaterialsStatus status;
- final  List<MaterialListModel> _materials;
-@override List<MaterialListModel> get materials {
+@override final  Status status;
+ final  List<MaterialModel> _materials;
+@override List<MaterialModel> get materials {
   if (_materials is EqualUnmodifiableListView) return _materials;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_materials);
 }
 
+@override final  MaterialTypeItemModel? selectedType;
 @override final  String? errorMessage;
 
 /// Create a copy of MaterialsState
@@ -102,16 +116,16 @@ _$MaterialsStateCopyWith<_MaterialsState> get copyWith => __$MaterialsStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MaterialsState&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other._materials, _materials)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MaterialsState&&(identical(other.status, status) || other.status == status)&&const DeepCollectionEquality().equals(other._materials, _materials)&&(identical(other.selectedType, selectedType) || other.selectedType == selectedType)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,const DeepCollectionEquality().hash(_materials),errorMessage);
+int get hashCode => Object.hash(runtimeType,status,const DeepCollectionEquality().hash(_materials),selectedType,errorMessage);
 
 @override
 String toString() {
-  return 'MaterialsState(status: $status, materials: $materials, errorMessage: $errorMessage)';
+  return 'MaterialsState(status: $status, materials: $materials, selectedType: $selectedType, errorMessage: $errorMessage)';
 }
 
 
@@ -122,11 +136,11 @@ abstract mixin class _$MaterialsStateCopyWith<$Res> implements $MaterialsStateCo
   factory _$MaterialsStateCopyWith(_MaterialsState value, $Res Function(_MaterialsState) _then) = __$MaterialsStateCopyWithImpl;
 @override @useResult
 $Res call({
- MaterialsStatus status, List<MaterialListModel> materials, String? errorMessage
+ Status status, List<MaterialModel> materials, MaterialTypeItemModel? selectedType, String? errorMessage
 });
 
 
-
+@override $MaterialTypeItemModelCopyWith<$Res>? get selectedType;
 
 }
 /// @nodoc
@@ -139,16 +153,29 @@ class __$MaterialsStateCopyWithImpl<$Res>
 
 /// Create a copy of MaterialsState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? materials = null,Object? errorMessage = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? materials = null,Object? selectedType = freezed,Object? errorMessage = freezed,}) {
   return _then(_MaterialsState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as MaterialsStatus,materials: null == materials ? _self._materials : materials // ignore: cast_nullable_to_non_nullable
-as List<MaterialListModel>,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as Status,materials: null == materials ? _self._materials : materials // ignore: cast_nullable_to_non_nullable
+as List<MaterialModel>,selectedType: freezed == selectedType ? _self.selectedType : selectedType // ignore: cast_nullable_to_non_nullable
+as MaterialTypeItemModel?,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String?,
   ));
 }
 
+/// Create a copy of MaterialsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$MaterialTypeItemModelCopyWith<$Res>? get selectedType {
+    if (_self.selectedType == null) {
+    return null;
+  }
 
+  return $MaterialTypeItemModelCopyWith<$Res>(_self.selectedType!, (value) {
+    return _then(_self.copyWith(selectedType: value));
+  });
+}
 }
 
 // dart format on

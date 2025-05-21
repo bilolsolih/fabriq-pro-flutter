@@ -1,18 +1,19 @@
 import 'package:fabriq_pro/data/models/material/material_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../common/widgets/buttons/fabriq_text_button.dart';
-import '../../../common/widgets/buttons/fabriq_text_button_with_icon.dart';
-import '../../../common/widgets/fabriq_text_form_field.dart';
-import '../../managers/materials/materials_bloc.dart';
-import '../../managers/materials/materials_state.dart';
+import '../../../../common/widgets/buttons/fabriq_text_button.dart';
+import '../../../../common/widgets/buttons/fabriq_text_button_with_icon.dart';
+import '../../../../common/widgets/fabriq_text_form_field.dart';
+import '../../../managers/materials_types/material_types_bloc.dart';
+import '../../../managers/materials_types/material_types_state.dart';
 
 class MaterialUpdateDialog extends StatefulWidget {
   const MaterialUpdateDialog({super.key, required this.materialType});
 
-  final MaterialListModel materialType;
+  final MaterialTypeItemModel materialType;
 
   @override
   State<MaterialUpdateDialog> createState() => _MaterialUpdateDialogState();
@@ -29,18 +30,18 @@ class _MaterialUpdateDialogState extends State<MaterialUpdateDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<MaterialsBloc, MaterialsState>(
+    return BlocListener<MaterialTypesBloc, MaterialTypesState>(
       listener: (context, state) {
         if (state.status == MaterialsStatus.success) {
           context.pop();
-          context.read<MaterialsBloc>().add(MaterialsLoad());
+          context.read<MaterialTypesBloc>().add(LoadMaterialTypes());
         }
       },
       child: Dialog(
         child: Container(
-          width: 600,
-          height: 339,
-          padding: EdgeInsets.all(40),
+          width: 600.w,
+          height: 339.h,
+          padding: EdgeInsets.all(40.sp),
           color: Colors.white,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,7 +51,7 @@ class _MaterialUpdateDialogState extends State<MaterialUpdateDialog> {
                 style: TextStyle(
                   color: Colors.black,
                   fontFamily: "Roboto",
-                  fontSize: 16,
+                  fontSize: 24.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -62,8 +63,8 @@ class _MaterialUpdateDialogState extends State<MaterialUpdateDialog> {
                     controller: titleController,
                     label: "Yangi nom",
                     hintText: "Material nomi",
-                    width: 250,
-                    height: 40,
+                    width: 250.w,
+                    height: 40.h,
                     validator: (value) => null,
                     isValid: null,
                   ),
@@ -71,12 +72,13 @@ class _MaterialUpdateDialogState extends State<MaterialUpdateDialog> {
               ),
               Divider(color: Color(0xFFD9D9D9), height: 1),
               Row(
-                spacing: 20,
+                spacing: 20.w,
                 children: [
                   FabriqTextButton(
                     text: "Bekor qilish",
-                    width: 250,
-                    height: 40,
+                    width: 250.w,
+                    height: 40.h,
+                    fontSize: 16.sp,
                     foregroundColor: Colors.black,
                     backgroundColor: Color(0xFFE5E7EB),
                     callback: () => context.pop(),
@@ -84,10 +86,11 @@ class _MaterialUpdateDialogState extends State<MaterialUpdateDialog> {
                   FabriqTextButtonWithIcon(
                     title: "Yangilash",
                     icon: "assets/icons/add_profile.svg",
-                    width: 250,
-                    height: 40,
+                    width: 250.w,
+                    height: 40.h,
+                    fontSize: 16.sp,
                     callback:
-                        () => context.read<MaterialsBloc>().add(
+                        () => context.read<MaterialTypesBloc>().add(
                           MaterialsUpdate(id: widget.materialType.id, title: titleController.text),
                         ),
                   ),

@@ -1,13 +1,13 @@
 import 'package:fabriq_pro/data/interfaces/serializable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'employee_model.freezed.dart';
+part 'user_model.freezed.dart';
 
-part 'employee_model.g.dart';
+part 'user_model.g.dart';
 
 @freezed
-abstract class Employee with _$Employee implements IJsonSerializable {
-  const factory Employee({
+abstract class User with _$User implements IJsonSerializable {
+  const factory User({
     required int id,
     @JsonKey(name: 'profilePhoto') String? image,
     required String firstName,
@@ -15,7 +15,7 @@ abstract class Employee with _$Employee implements IJsonSerializable {
     required String role,
     required String phoneNumber,
     required String address,
-  }) = _Employee;
+  }) = _User;
 
-  factory Employee.fromJson(Map<String, dynamic> json) => _$EmployeeFromJson(json);
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }

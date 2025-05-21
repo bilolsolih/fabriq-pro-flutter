@@ -6,8 +6,8 @@ part 'material_models.freezed.dart';
 part 'material_models.g.dart';
 
 @freezed
-abstract class MaterialListModel with _$MaterialListModel {
-  const factory MaterialListModel({
+abstract class MaterialTypeItemModel with _$MaterialTypeItemModel {
+  const factory MaterialTypeItemModel({
     required int id,
     required String title,
     required num totalInKg,
@@ -15,25 +15,50 @@ abstract class MaterialListModel with _$MaterialListModel {
     required num totalInPack,
   }) = _MaterialListModel;
 
-  factory MaterialListModel.fromJson(Map<String, dynamic> json) =>
-      _$MaterialListModelFromJson(json);
+  factory MaterialTypeItemModel.fromJson(Map<String, dynamic> json) =>
+      _$MaterialTypeItemModelFromJson(json);
 }
 
 @freezed
-abstract class MaterialCreateModel with _$MaterialCreateModel implements IJsonSerializable {
-  const factory MaterialCreateModel({required String title}) = _MaterialCreateModel;
+abstract class MaterialTypeCreateModel with _$MaterialTypeCreateModel implements IJsonSerializable {
+  const factory MaterialTypeCreateModel({required String title}) = _MaterialTypeCreateModel;
 
-  factory MaterialCreateModel.fromJson(Map<String, dynamic> json) =>
-      _$MaterialCreateModelFromJson(json);
+  factory MaterialTypeCreateModel.fromJson(Map<String, dynamic> json) =>
+      _$MaterialTypeCreateModelFromJson(json);
 }
 
 @freezed
-abstract class MaterialUpdateModel with _$MaterialUpdateModel implements IJsonSerializable {
-  const factory MaterialUpdateModel({
+abstract class MaterialTypeUpdateModel with _$MaterialTypeUpdateModel implements IJsonSerializable {
+  const factory MaterialTypeUpdateModel({
     @JsonKey(includeToJson: false) required int id,
     required String title,
-  }) = _MaterialUpdateModel;
+  }) = _MaterialTypeUpdateModel;
 
-  factory MaterialUpdateModel.fromJson(Map<String, dynamic> json) =>
-      _$MaterialUpdateModelFromJson(json);
+  factory MaterialTypeUpdateModel.fromJson(Map<String, dynamic> json) =>
+      _$MaterialTypeUpdateModelFromJson(json);
+}
+
+@freezed
+abstract class MaterialModel with _$MaterialModel {
+  const factory MaterialModel({
+    required int id,
+    required String partyNumber,
+    required String fromUser,
+    required String fromUserRole,
+    required String toUser,
+    required String toUserRole,
+    required String acceptedUser,
+    required String acceptedUserRole,
+    required num width,
+    required num thickness,
+    required bool hasPatterns,
+    required String colorTitle,
+    required String colorHex,
+    required num quantity,
+    required String unit,
+    required DateTime date,
+    required String status,
+  }) = _MaterialEntryModel;
+
+  factory MaterialModel.fromJson(Map<String, dynamic> json) => _$MaterialModelFromJson(json);
 }

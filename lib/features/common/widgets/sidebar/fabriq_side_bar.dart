@@ -1,5 +1,6 @@
 import 'package:fabriq_pro/core/routing/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,16 +14,21 @@ class FabriqSideBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 290,
+      width: 340.spMin,
       height: double.infinity,
-      padding: EdgeInsets.only(top: 20),
+      padding: EdgeInsets.only(top: 20.h),
       decoration: BoxDecoration(color: Colors.white),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 40, bottom: 12),
-            child: SvgPicture.asset("assets/icons/logo.svg"),
+            padding: EdgeInsets.only(left: 40.spMin, bottom: 12.h),
+            child: SvgPicture.asset(
+              "assets/icons/logo.svg",
+              width: 175.sp,
+              height: 40.sp,
+              fit: BoxFit.cover,
+            ),
           ),
           Expanded(
             child: SingleChildScrollView(

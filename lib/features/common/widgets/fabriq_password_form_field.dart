@@ -12,12 +12,15 @@ class FabriqPasswordFormField extends StatefulWidget {
     required this.hintText,
     required this.validator,
     required this.isValid,
+    this.width = 308,
+    this.height = 48,
   });
 
   final TextEditingController controller;
   final String label, hintText;
   final String? Function(String?) validator;
   final bool? isValid;
+  final double width, height;
 
   @override
   State<FabriqPasswordFormField> createState() => _FabriqPasswordFormFieldState();
@@ -34,11 +37,7 @@ class _FabriqPasswordFormFieldState extends State<FabriqPasswordFormField> {
       children: [
         Text(
           widget.label,
-          style: TextStyle(
-            color: AppColors.primary,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
+          style: TextStyle(color: AppColors.primary, fontSize: 16.sp, fontWeight: FontWeight.w500),
         ),
         TextFormField(
           controller: widget.controller,
@@ -47,29 +46,28 @@ class _FabriqPasswordFormFieldState extends State<FabriqPasswordFormField> {
           obscureText: !showPassword,
           style: TextStyle(
             color: AppColors.primary,
-            fontSize: 16,
+            fontSize: 16.sp,
             fontWeight: FontWeight.w600,
+            height: 1,
           ),
           decoration: InputDecoration(
             filled: true,
             fillColor: AppColors.backgroundColor,
-            constraints: BoxConstraints.tight(Size(308, 48)),
+            constraints: BoxConstraints.tight(Size(widget.width, widget.height)),
             contentPadding: EdgeInsets.symmetric(horizontal: 20.w),
             hintText: widget.hintText,
-            hintStyle: TextStyle(color: AppColors.secondary, fontSize: 16),
+            hintStyle: TextStyle(color: AppColors.secondary, fontSize: 16.sp),
             errorStyle: TextStyle(fontSize: 14.r, fontWeight: FontWeight.w500),
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide.none),
-            suffixIconConstraints: BoxConstraints.loose(
-              Size(double.infinity, double.infinity),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.sp),
+              borderSide: BorderSide.none,
             ),
+            suffixIconConstraints: BoxConstraints.loose(Size(double.infinity, double.infinity)),
             suffixIcon: Padding(
               padding: EdgeInsets.only(right: 10.w),
               child: AnimatedCrossFade(
                 duration: Duration(milliseconds: 300),
-                crossFadeState:
-                    showPassword
-                        ? CrossFadeState.showFirst
-                        : CrossFadeState.showSecond,
+                crossFadeState: showPassword ? CrossFadeState.showFirst : CrossFadeState.showSecond,
                 firstChild: FabriqIconButton(
                   icon: "assets/icons/hide_password.svg",
                   width: 20.w,

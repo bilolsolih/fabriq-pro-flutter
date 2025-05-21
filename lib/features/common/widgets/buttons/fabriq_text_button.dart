@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/utils/colors.dart';
 
@@ -30,8 +31,9 @@ class FabriqTextButton extends StatelessWidget {
         child: TextButton(
           onPressed: callback,
           style: TextButton.styleFrom(
+            padding: EdgeInsets.zero,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(10.sp),
               side: BorderSide.none,
             ),
             backgroundColor: backgroundColor,

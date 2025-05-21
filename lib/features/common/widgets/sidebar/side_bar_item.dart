@@ -1,5 +1,6 @@
 import 'package:fabriq_pro/core/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SideBarItem extends StatefulWidget {
@@ -27,23 +28,26 @@ class _SideBarItemState extends State<SideBarItem> {
           setState(() {});
         },
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15),
+          padding: EdgeInsets.symmetric(vertical: 15.spMin),
           child: Row(
             children: [
-              SizedBox(width: 40),
+              SizedBox(width: 40.spMin),
               SvgPicture.asset(
                 widget.icon,
+                width: 24.spMin,
+                height: 24.spMin,
+                fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
                   isHovered ? AppColors.darkBlue : Colors.black,
                   BlendMode.srcIn,
                 ),
               ),
-              SizedBox(width: 12),
+              SizedBox(width: 12.w),
               Text(
                 widget.title,
                 style: TextStyle(
                   color: isHovered ? AppColors.darkBlue : Colors.black,
-                  fontSize: 16,
+                  fontSize: 16.spMin,
                 ),
               ),
             ],

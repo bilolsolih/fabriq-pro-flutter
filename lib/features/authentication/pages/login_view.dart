@@ -4,6 +4,7 @@ import 'package:fabriq_pro/features/authentication/managers/login_state.dart';
 import 'package:fabriq_pro/features/authentication/pages/login_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginView extends StatefulWidget {
@@ -41,8 +42,8 @@ class _LoginViewState extends State<LoginView> {
                 children: [
                   Image.asset(
                     "assets/images/login.png",
-                    width: 593,
-                    height: 593,
+                    width: 593.spMin,
+                    height: 593.spMin,
                     fit: BoxFit.cover,
                   ),
                   LoginForm(

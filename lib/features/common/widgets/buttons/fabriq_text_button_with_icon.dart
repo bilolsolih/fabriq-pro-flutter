@@ -1,5 +1,6 @@
 import 'package:fabriq_pro/core/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class FabriqTextButtonWithIcon extends StatelessWidget {
@@ -9,13 +10,14 @@ class FabriqTextButtonWithIcon extends StatelessWidget {
     required this.icon,
     required this.width,
     required this.height,
+    this.fontSize = 16,
     this.foregroundColor = Colors.white,
     this.backgroundColor = AppColors.darkBlue,
     required this.callback,
   });
 
   final String title, icon;
-  final double width, height;
+  final double width, height, fontSize;
 
   final Color foregroundColor, backgroundColor;
 
@@ -23,23 +25,27 @@ class FabriqTextButtonWithIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: callback,
-      style: TextButton.styleFrom(
-        fixedSize: Size(width, height),
-        backgroundColor: backgroundColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-          side: BorderSide.none,
+    return SizedBox(
+      width: width,
+      height: height,
+      child: TextButton(
+        onPressed: callback,
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          backgroundColor: backgroundColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.sp),
+            side: BorderSide.none,
+          ),
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        spacing: 4,
-        children: [
-          SvgPicture.asset(icon),
-          Text(title, style: TextStyle(color: foregroundColor, fontSize: 16)),
-        ],
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 4.w,
+          children: [
+            SvgPicture.asset(icon, width: 24.spMin, height: 24.spMin, fit: BoxFit.cover),
+            Text(title, style: TextStyle(color: foregroundColor, fontSize: fontSize, height: 1)),
+          ],
+        ),
       ),
     );
   }

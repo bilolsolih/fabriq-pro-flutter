@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'employee_model.dart';
+part of 'user_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_Employee _$EmployeeFromJson(Map<String, dynamic> json) => _Employee(
+_User _$UserFromJson(Map<String, dynamic> json) => _User(
   id: (json['id'] as num).toInt(),
   image: json['profilePhoto'] as String?,
   firstName: json['firstName'] as String,
@@ -16,7 +16,7 @@ _Employee _$EmployeeFromJson(Map<String, dynamic> json) => _Employee(
   address: json['address'] as String,
 );
 
-Map<String, dynamic> _$EmployeeToJson(_Employee instance) => <String, dynamic>{
+Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
   'id': instance.id,
   'profilePhoto': instance.image,
   'firstName': instance.firstName,

@@ -17,7 +17,7 @@ class EmployeesTableHeader extends StatelessWidget {
           FabriqTableHeaderTitle(title: "№", flex: 1),
           FabriqTableHeaderTitle(title: "Rasmi", flex: 1),
           FabriqTableHeaderTitle(title: "Ism familiya", flex: 3),
-          FabriqTableHeaderTitle(title: "Ro'li", flex: 1),
+          FabriqTableHeaderTitle(title: "Ro'li", flex: 2),
           FabriqTableHeaderTitle(title: "Telefon raqami", flex: 2),
           FabriqTableHeaderTitle(title: "Manzili", flex: 2),
           FabriqTableHeaderTitle(title: "Taxrirlash", flex: 1),

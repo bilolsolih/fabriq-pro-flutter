@@ -6,7 +6,7 @@ import '../data/interfaces/serializable.dart';
 class ApiClient {
   ApiClient() {
     dio = Dio(
-      BaseOptions(baseUrl: "http://192.168.9.120:8888/api/v1", validateStatus: (value) => true),
+      BaseOptions(baseUrl: "http://192.168.1.80:8888/api/v1", validateStatus: (value) => true),
     );
 
     dio.interceptors.add(AuthInterceptor(dio: dio));
